@@ -5,14 +5,14 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Subject extends Model
+class ExamType extends Model
 {
+
     use SoftDeletes;
-    protected $table = 'subjects';
+
+    protected $table = 'exam_types';
     protected $dates = ['deleted_at'];
-    
-    public function class_name() {
-        return $this->belongsTo('App\ClassName', 'class_name_id');
-    }
+
+//    protected $fillable = ['***'];
     
 }

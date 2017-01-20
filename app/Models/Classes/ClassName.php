@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App; 
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,14 +15,14 @@ class ClassName extends Model {
 //    protected $fillable = ['***'];
 
     public function section() {
-        return $this->hasMany('App\SectionName', 'class_name_id');
+        return $this->hasMany('App\Models\Classes\SectionName', 'class_name_id');
     }
 
     public function student() {
         return $this->hasMany('App\Student', 'class_name_id');
     }
     public function subject() {
-        return $this->hasMany('App\Subject', 'class_name_id');
+        return $this->hasMany('App\Models\Result\Subject', 'class_name_id');
     }
 
 }
