@@ -12,8 +12,8 @@ class SectionName extends Model {
     protected $table = 'section_names';
     protected $dates = ['deleted_at'];
 
-    public function class_name() {
-        return $this->belongsTo('App\Models\Classes\ClassName', 'class_name_id');
+    public function ClassName() {
+        return $this->belongsTo('App\ClassName', 'class_names_id');
     }
 
 }

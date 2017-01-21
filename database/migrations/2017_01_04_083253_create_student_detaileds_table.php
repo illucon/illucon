@@ -14,7 +14,9 @@ class CreateStudentDetailedsTable extends Migration {
     public function up() {
         Schema::create('student_detaileds', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('student_id', 50);
+            $table->integer('students_id')->unsigned();
+            $table->foreign('students_id')->references('id')->on('students');
+            
             $table->string('transport', 50);
             $table->string('dob', 50);
             $table->string('birth_certificate', 50);

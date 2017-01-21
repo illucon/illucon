@@ -4,27 +4,20 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubjectsTable extends Migration
+class CreateClassNamesTable extends Migration
 {
     /**
      * Run the migrations.
      *
-     * @return void
+     * @return void 
      */
     public function up()
     {
-        Schema::create('subjects', function (Blueprint $table) {
+        Schema::create('class_names', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('class_name_id');
             
-            $table->string('subject_name');
             $table->string('class_name');
-            $table->string('section_name');
             
-            $table->string('written_mark');
-            $table->string('oral_mark');
-            $table->string('t1_mark');
-            $table->string('t2_mark');
             
             $table->string('created_by', 255 )->default('user_from_session');
             $table->softDeletes();
@@ -39,6 +32,6 @@ class CreateSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subjects');
+        Schema::dropIfExists('class_names');
     }
 }

@@ -16,10 +16,10 @@ class CreateGradesTable extends Migration
         Schema::create('grades', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('marks_from');
-            $table->integer('marks_to');
+            $table->string('marks_from');
+            $table->string('marks_to');
             $table->string('grade');
-            $table->float('grade_point', 4, 2);
+            $table->string('grade_point');
             $table->string('remark', 255);
 
             $table->string('created_by', 255 )->default('user_from_session');

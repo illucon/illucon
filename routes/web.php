@@ -29,14 +29,25 @@ Route::post('/save-student', 'StudentController@save_student');
 Route::get('/student-list', 'StudentController@student_list');
 
 
-Route::get('/class-management', 'AcademicManagementController@class_management');
+Route::get('/classes', 'AcademicManagementController@class_management');
 Route::post('/add-class', 'AcademicManagementController@add_class');
 Route::get('/ajax-edit-view-{id}', 'AcademicManagementController@ajax_edit_view');
 Route::post('/update-class', 'AcademicManagementController@update_class');
 Route::get('/delete-class-{id}', 'AcademicManagementController@delete_class');
+Route::get('/sections', 'AcademicManagementController@sections');
+Route::post('/add-section', 'AcademicManagementController@add_section');
+Route::get('/subjects', 'AcademicManagementController@subjects');
+Route::post('/add-subject', 'AcademicManagementController@add_subject');
+Route::get('/years', 'AcademicManagementController@years');
+Route::post('/add-year', 'AcademicManagementController@add_year');
+
 
 Route::get('/grade-setting', 'ExamResultsController@grade_setting');
 Route::post('/add-grade', 'ExamResultsController@add_grade');
+Route::get('/exam-type', 'ExamResultsController@exam_type');
+Route::post('/add-exam_type', 'ExamResultsController@add_exam_type');
+Route::get('/exams', 'ExamResultsController@exams');
+Route::post('/add-new-exam', 'ExamResultsController@add_new_exam');
 
 
 

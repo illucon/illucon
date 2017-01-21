@@ -10,9 +10,10 @@ class Subject extends Model
     use SoftDeletes;
     protected $table = 'subjects';
     protected $dates = ['deleted_at'];
+    protected $fillable = ['written_mark', 'oral_mark', 't1_mark', 't2_mark', 'class_name', 'section_name'];
     
-    public function class_name() {
-        return $this->belongsTo('App\Models\Classes\ClassName', 'class_name_id');
+    public function ClassName() {
+        return $this->belongsTo('App\ClassName', 'class_names_id');
     }
     
 }

@@ -57,6 +57,7 @@
                     <li class=""><a href="{{url('/classes')}}">CLass Management</a></li>
                     <li><a href="{{url('/sections')}}">Section</a></li>
                     <li><a href="{{url('/subjects')}}">Subject</a></li>
+                    <li><a href="{{url('/years')}}">Academic Years</a></li>
                 </ul>
             </li>
             <li class="treeview">

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClassNamesTable extends Migration
+class CreateExamTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateClassNamesTable extends Migration
      */
     public function up()
     {
-        Schema::create('class_names', function (Blueprint $table) {
-            $table->increments('id');
-            
-            $table->string('class_name');
-            
-            
+        Schema::create('exam_types', function (Blueprint $table) {
+            $table->increments('id'); 
+
+            $table->string('exam_type');
+
             $table->string('created_by', 255 )->default('user_from_session');
             $table->softDeletes();
             $table->timestamps();
@@ -32,6 +31,6 @@ class CreateClassNamesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('class_names');
+        Schema::dropIfExists('exam_types');
     }
 }

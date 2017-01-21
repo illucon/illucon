@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateSectionNamesTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations. 
      *
      * @return void
      */
@@ -15,7 +15,8 @@ class CreateSectionNamesTable extends Migration
     {
         Schema::create('section_names', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('class_name_id');
+            $table->integer('class_names_id')->unsigned();
+            $table->foreign('class_names_id')->references('id')->on('class_names');
             
             $table->string('section_name');
             

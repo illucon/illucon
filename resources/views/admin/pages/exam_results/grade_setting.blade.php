@@ -57,7 +57,7 @@
 
                 <div class="form-group col-md-4">
                     <label for="grade_point">Grade Point</label>
-                    <input type="number" name="grade_point" class="form-control" id="grade_point" placeholder="(Example 5.00)">
+                    <input type="text" name="grade_point" class="form-control" id="grade_point" placeholder="(Example 5.00)">
                 </div>
 
                 <div class="form-group col-md-4">
