@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ClassName;
+use App\SectionName;
 
 class AcademicManagementController extends Controller {
 
@@ -47,17 +48,13 @@ class AcademicManagementController extends Controller {
             return back()->with('delete', 'Class deleted Successfully');
 
     }
-    public function test() {
+    public function sections() {
+        $sections= SectionName::all();
+        $class_names = ClassName::all();
+        return view('admin.pages.academic_management.section', compact('sections', 'class_names'));
+    }
+    public function add_section(Request $request) {
         
-//            $id = $request->id;
-            $data = ClassName::find(3);
-            $info =array( 
-                  'name' => '<input type = "text" name = "class_name" class = "form-control" value = "' . $data->class_name . '" >',
-                );
-//            echo $info;        
-            
-            return response()->json($info);
-            
     }
 
 }
