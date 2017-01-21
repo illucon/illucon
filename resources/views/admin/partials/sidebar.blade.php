@@ -32,7 +32,7 @@
             
             <li class="header">HEADER</li>
             
-            <li class="{{ url()->current() == url("/dashboard") ? "active" : "" }}"><a href="{{url('/dashboard')}}"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+            <li class=""><a href="{{url('/dashboard')}}"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
             
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Student</span>
@@ -41,8 +41,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ url()->current() == url("/new-admission") ? "active" : "" }}"><a href="{{url('/new-admission')}}">New Admission</a></li>
-                    <li class="{{ url()->current() == url("/student-list") ? "active" : "" }}"><a href="{{url('/student-list')}}">Student List</a></li>
+                    <li class=""><a href="{{url('/new-admission')}}">New Admission</a></li>
+                    <li class=""><a href="{{url('/student-list')}}">Student List</a></li>
                     <li><a href="#">Link in level 2</a></li>
                 </ul>
             </li>
@@ -54,8 +54,9 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ url()->current() == url("/class-management") ? "active" : "" }}}"><a href="{{url('/class-management')}}">CLass Management</a></li>
-                    <li><a href="#">Link in level 2</a></li>
+                    <li class=""><a href="{{url('/classes')}}">CLass Management</a></li>
+                    <li><a href="{{url('/sections')}}">Section</a></li>
+                    <li><a href="{{url('/subjects')}}">Subject</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -65,8 +66,9 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ url()->current() == url("/grade-setting") ? "active" : "" }}}"><a href="{{url('/grade-setting')}}">Grade Setting</a></li>
-                    <li><a href="#">Link in level 2</a></li>
+                    <li class=""><a href="{{url('/grade-setting')}}">Grade Setting</a></li>
+                    <li class=""><a href="{{url('/exam-type')}}">Exam Type</a></li>
+                    <li class=""><a href="{{url('/exams')}}">Set New Exam</a></li>
                 </ul>
             </li>
             
