@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Grade;
 use App\ExamType;
-use App\ExamName;
+use App\ExamName; 
 use App\ClassName;
 use App\AcademicYear;
 
