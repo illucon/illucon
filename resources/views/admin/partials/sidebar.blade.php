@@ -70,6 +70,7 @@
                     <li class=""><a href="{{url('/grade-setting')}}">Grade Setting</a></li>
                     <li class=""><a href="{{url('/exam-type')}}">Exam Type</a></li>
                     <li class=""><a href="{{url('/exams')}}">Set New Exam</a></li>
+                    <li class=""><a href="{{url('/mark-entries')}}">Mark Entry</a></li>
                 </ul>
             </li>
             

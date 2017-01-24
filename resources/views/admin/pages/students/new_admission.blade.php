@@ -191,26 +191,16 @@
                         <!--second column-->
                         <div class="col-md-6">
 
-                            <div class="form-group {{ $errors->has('class') ? ' has-error' : '' }}">
+                            <div class="form-group {{ $errors->has('class_names_id') ? ' has-error' : '' }}">
                                 <label>Class *
                                     @if ($errors->has('class'))
-                                    <i class="fa fa-times-circle-o"></i>  &nbsp;&nbsp;&nbsp;&nbsp; {{ $errors->first('class') }}
+                                    <i class="fa fa-times-circle-o"></i>  &nbsp;&nbsp;&nbsp;&nbsp; {{ $errors->first('class_names_id') }}
                                     @endif
                                 </label>
-                                <select class="form-control select2" name="class" style="width: 100%;"  required>
-                                    <option></option>
-                                    <option value="KG">KG</option>
-                                    <option value="nursery">Nursery</option>
-                                    <option value="one">One</option>
-                                    <option value="two">Two</option>
-                                    <option value="three">Three</option>
-                                    <option value="four">Four</option>
-                                    <option value="five">Five</option>
-                                    <option value="six">Six</option>
-                                    <option value="seven">Seven</option>
-                                    <option value="eight">Eight</option>
-                                    <option value="nine">Nine</option>
-                                    <option value="ten">Ten</option>
+                                <select class="form-control" name="class_names_id" style="width: 100%;" onchange="ajax_view_option(this.value, '{{ url("/ajax-view-section") }}', '#section')" required>
+                                    @foreach($class_name as $v)
+                                    <option value="{{$v->id}}">{{$v->class_name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
@@ -220,12 +210,8 @@
                                     <i class="fa fa-times-circle-o"></i>  &nbsp;&nbsp;&nbsp;&nbsp; {{ $errors->first('section') }}
                                     @endif
                                 </label>
-                                <select class="form-control select2" name="section" style="width: 100%;" required>
-                                    <option></option>
-                                    <option value="morning">Morning</option>
-                                    <option value="noon">Noon-</option>
-                                    <option value="boy">Boy</option>
-                                    <option value="girl">Girl</option>
+                                <select class="form-control select2" name="section" id="section" style="width: 100%;" required>
+
                                 </select>
                             </div>
 
@@ -236,11 +222,9 @@
                                     @endif
                                 </label>
                                 <select class="form-control select2" name="academic_year" style="width: 100%;"  required>
-                                    <option></option>
-                                    <option value="2017">2017</option>
-                                    <option value="2018">2018</option>
-                                    <option value="2019">2019</option>
-                                    <option value="2020">2020</option>
+                                    @foreach($academic_year as $v)
+                                    <option value="{{$v->academic_year}}">{{$v->academic_year}}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
@@ -726,29 +710,40 @@
 
 
 @push('scripts')
+<script>
+    function ajax_view_option(id, link, location1) {
+    $.ajax({
+    url: link,
+            type:"GET",
+            data: {"id":id},
+            success: function(result){
+            console.log(result);
+            $(location1).html(result.res1);
+            }
+    });
+    }
+</script>
 <!-- Select2 -->
 <script src="{{asset('public/admin_assets')}}/plugins/select2/select2.full.min.js"></script>
 <!-- bootstrap datepicker -->
 <script src="{{asset('public/admin_assets')}}/plugins/datepicker/bootstrap-datepicker.js"></script>
 <script>
-$(function () {
+    $(function () {
 //Date picker
     $('#dob').datepicker({
-        autoclose: true
+    autoclose: true
     });
     //Initialize Select2 Elements
     $(".select2").select2();
-});
-</script>
+    });</script>
 <script>
     $(document).ready(function () {
-        $("#same_address").click(function () {
-            $("#permanent_address").val($("#present_address").val());
-            $("#permanent_city").val($("#present_city").val());
-            $dist = $("#present_district").val();
-            $("#permanent_district").val($dist).change();
-        });
-
+    $("#same_address").click(function () {
+    $("#permanent_address").val($("#present_address").val());
+    $("#permanent_city").val($("#present_city").val());
+    $dist = $("#present_district").val();
+    $("#permanent_district").val($dist).change();
+    });
 //present_address present_city present_district permanent_address permanent_city permanent_district
     });
 

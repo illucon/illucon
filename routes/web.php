@@ -48,6 +48,10 @@ Route::get('/exam-type', 'ExamResultsController@exam_type');
 Route::post('/add-exam_type', 'ExamResultsController@add_exam_type');
 Route::get('/exams', 'ExamResultsController@exams');
 Route::post('/add-new-exam', 'ExamResultsController@add_new_exam');
+Route::get('/mark-entries', 'ExamResultsController@mark_entries');
+Route::get('/ajax-view-section', 'ExamResultsController@ajax_view_section');
+Route::post('/mark-entry-by-class', 'ExamResultsController@mark_entry_by_class');
+Route::post('/save-mark-entry-by-class', 'ExamResultsController@save_mark_entry_by_class');
 
 
 

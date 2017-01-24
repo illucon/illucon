@@ -55,7 +55,7 @@
                             <td>{{ $v->gender }}</td>
                             <td>{{ $v->group }}</td>
                             <td>{{ $v->section }}</td>
-                            <td>{{ $v->class }}</td>
+                            <td>{{ $v->ClassName->class_name }}</td>
                             <td>{{ $v->academic_year }}</td>
                             <td>{{-- $v->status --}}Status</td>
                             <td><a href="{{ url('/student-acount/'.$v->id) }}">Account</a></td>

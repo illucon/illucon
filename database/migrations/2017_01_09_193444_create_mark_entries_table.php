@@ -15,16 +15,15 @@ class CreateMarkEntriesTable extends Migration
     {
         Schema::create('mark_entries', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('class_names_id')->unsigned();
-            $table->foreign('class_names_id')->references('id')->on('class_names');
-            $table->integer('section_names_id')->unsigned();
-            $table->foreign('section_names_id')->references('id')->on('section_names');
-            $table->integer('subjects_id')->unsigned();
-            $table->foreign('subjects_id')->references('id')->on('subjects');
-            $table->integer('academic_years_id')->unsigned();
-            $table->foreign('academic_years_id')->references('id')->on('academic_years');
+//            $table->integer('class_names_id')->unsigned(); //to be deleted
+//            $table->foreign('class_names_id')->references('id')->on('class_names'); //to be deleted
+//            $table->integer('section_names_id')->unsigned(); //to be deleted
+//            $table->foreign('section_names_id')->references('id')->on('section_names'); //to be deleted
+//            $table->integer('academic_years_id')->unsigned(); //to be deleted
+//            $table->foreign('academic_years_id')->references('id')->on('academic_years'); //to be deleted
+            
+            $table->integer('subjects_id')->unsigned(); 
             $table->integer('exam_names_id')->unsigned();
-            $table->foreign('exam_names_id')->references('id')->on('exam_names');
             $table->integer('students_id')->unsigned();
             $table->foreign('students_id')->references('id')->on('students');
             
@@ -37,6 +36,11 @@ class CreateMarkEntriesTable extends Migration
             $table->string('created_by', 255 )->default('user_from_session');
             $table->softDeletes();
             $table->timestamps();
+            
+            
+            $table->foreign('subjects_id')->references('id')->on('subjects');
+            $table->foreign('exam_names_id')->references('id')->on('exam_names');
+            
         });
     }
 

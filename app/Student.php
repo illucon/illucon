@@ -11,7 +11,7 @@ class Student extends Model
     use SoftDeletes;
     protected $table = 'students';
     protected $dates = ['deleted_at'];
-    protected $fillable = ['sid', 'first_name', 'last_name', 'gender', 'group', 'religion', 'class', 'section', 'academic_year', 'image' ];
+    protected $fillable = ['sid', 'first_name', 'last_name', 'gender', 'group', 'religion', 'class_names_id', 'section', 'academic_year', 'image' ];
     
     
     public function studentDetailed()
@@ -20,11 +20,8 @@ class Student extends Model
 //        return $this->hasOne('App\Phone', 'foreign_key', 'local_key');
     }
     
-    public function class_name() {
-        return $this->belongsTo('App\Models\Classes\ClassName', 'class_name_id');
+    public function ClassName() {
+        return $this->belongsTo('App\ClassName', 'class_names_id');
     }
-    
-    
-    
     
 }

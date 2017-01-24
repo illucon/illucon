@@ -19,7 +19,7 @@ class AcademicManagementController extends Controller {
         $class = new ClassName;
         $class->class_name = $request->class_name;
         $class->save();
-        return redirect('/class-management')->with('success', 'Successfully addes new Class');
+        return back()->with('success', 'Successfully addes new Class');
     }
 
     public function ajax_edit_view(Request $request) {

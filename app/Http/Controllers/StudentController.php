@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Student;
 use App\StudentDetailed;
+use App\ClassName;
+use App\AcademicYear;
+
 use App\Http\Requests\StudentInfoRequest;
 use Session;
 
 class StudentController extends Controller {
 
     public function new_admission() {
-        return view('admin.pages.students.new_admission');
+        $class_name = ClassName::all();
+        $academic_year = AcademicYear::all();
+        
+        return view('admin.pages.students.new_admission', compact('class_name', 'academic_year'));
     }
 
     public function save_student(StudentInfoRequest $request) {
@@ -21,7 +27,7 @@ class StudentController extends Controller {
         $student->gender = $request->gender;
         $student->group = $request->group;
         $student->religion = $request->religion;
-        $student->class = $request->class;
+        $student->class_names_id = $request->class_names_id;
         $student->section = $request->section;
         $student->academic_year = $request->academic_year;
 
@@ -73,7 +79,7 @@ class StudentController extends Controller {
         $student->save();
 
         $student->sid = (date('y') * 100000) + $student->id;
-        $student_detailed->student_id = $student->id;
+        $student_detailed->students_id = $student->id;
 
         $student->save();
         $student_detailed->save();
@@ -84,7 +90,7 @@ class StudentController extends Controller {
     }
 
     public function student_list() {
-        $students= Student::paginate(3);
+        $students= Student::paginate(20);
         return view('admin.pages.students.student_list', compact('students'));
     }
 

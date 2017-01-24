@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Grade;
 use App\ExamType;
-use App\ExamName; 
+use App\ExamName;
 use App\ClassName;
 use App\AcademicYear;
+use App\SectionName;
+use App\Subject;
+use App\Student;
+use App\MarkEntry;
 
 class ExamResultsController extends Controller {
 
@@ -63,6 +67,68 @@ class ExamResultsController extends Controller {
         $exam_name->save();
 
         return back()->with('success', 'Successfully Added');
+    }
+
+    public function mark_entries() {
+        $class_name = ClassName::all();
+        $academic_year = AcademicYear::all();
+        return view('admin.pages.exam_results.mark_entry', compact('class_name', 'academic_year'));
+    }
+
+    public function ajax_view_section(Request $request) {
+        if ($request->ajax()) {
+            $id = $request->id;
+
+            $section = SectionName::where('class_names_id', $id)->get();
+            view()->share('class_to_section', $section);
+            $view1 = view('admin.pages.ajax_options.section')->render();
+
+            $subject = Subject::where('class_names_id', $id)->get();
+            view()->share('class_to_subject', $subject);
+            $view2 = view('admin.pages.ajax_options.subject')->render();
+
+            $exam_name = ExamName::where('class_names_id', $id)->get();
+            view()->share('class_to_exam_name', $exam_name);
+            $view3 = view('admin.pages.ajax_options.exam_name')->render();
+
+            $info['res1'] = $view1;
+            $info['res2'] = $view2;
+            $info['res3'] = $view3;
+
+            return response()->json($info);
+        }
+    }
+
+    public function mark_entry_by_class(Request $request) {
+        $year = AcademicYear::find($request->academic_years_id);
+        $class = ClassName::find($request->class_names_id);
+        $subject = Subject::find($request->subjects_id);
+        $exam_name = ExamName::find($request->exam_names_id);
+        $section = SectionName::find($request->section_names_id);
+
+        $section_id = $request->section_names_id;
+        $students = Student::where('section', $section_id)->get();
+
+        return view('admin.pages.exam_results.mark_entry_by_class', compact('students', 'year', 'class', 'subject', 'exam_name', 'section'));
+    }
+
+    public function save_mark_entry_by_class(Request $request) {
+        $exam_names_id = $request->exam_names_id;
+        $subject_id = $request->subjects_id;
+        $total = ($request->total);  //total entry + 1(last increment)
+
+        for ($i = 0; $i < $total; $i++) {
+            $mark_entry = new MarkEntry;
+            $mark_entry->exam_names_id = $exam_names_id;
+            $mark_entry->subjects_id = $subject_id;
+            $mark_entry->students_id = $request->students_id[$i];
+            $mark_entry->written_mark = $request->written_mark[$i];
+            $mark_entry->oral_mark = $request->oral_mark[$i];
+            $mark_entry->t1_mark = $request->t1_mark[$i];
+            $mark_entry->t2_mark = $request->t2_mark[$i];
+            $mark_entry->save();
+        }
+        return redirect('/mark-entries')->with('success', 'Successfully Updated Marks to the Section');
     }
 
 }
